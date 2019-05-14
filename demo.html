@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="cardGame">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>Cards</title>
+    <script>document.write('<base href="' + document.location + '" />');</script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="deck-of-cards.css" />
+    <script data-require="angular.js@1.5.x" src="https://code.angularjs.org/1.5.8/angular.js" data-semver="1.5.8"></script>
+    <script src="deck-of-cards.js"></script>
+    <script src="demo.js"></script>
+  </head>
+
+  <body ng-controller="DemoController as vm" class="demoPage">
+    <h1>Draw Card and Shuffle</h1>
+    
+    <div >
+      <button class="button" type="button" ng-click="vm.reset()">Reset</button>
+      <button class="button type="button" ng-click="vm.shuffle()" ng-disabled="!vm.deck.cards.length">Shuffle</button>
+      <button class="button type="button" ng-click="vm.dealOne()" ng-disabled="!vm.deck.cards.length">Draw One</button>
+      <button class="button type="button" ng-click="vm.dealAll()" ng-disabled="!vm.deck.cards.length">Draw All</button>
+      <button class="button type="button" ng-click="vm.dealShuffledDeck()">Shuffle &amp; Draw All</button>
+    </div>
+    <br>
+    Cards remaining: {{vm.deck.cards.length}}
+    
+    <ul class="card-list">
+      <li ng-repeat="card in vm.dealt">
+        <div class="card {{card.suit.color}}" title="{{card.displayName}}">
+          <div class="letter">{{card.letter}}</div>
+          <div class="suit" ng-bind-html="card.suit.glyph"></div>
+        </div>
+      </li>
+    </ul>
+  </body>
+
+</html>
